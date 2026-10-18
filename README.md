@@ -71,3 +71,22 @@ and length in a 32-byte buffer against the standard `memmove`, including overlap
 in both directions, identical ranges, and zero-length moves. Separate buffers
 are tested as well.
 
+
+
+## Run with sanitizers
+
+With Clang or GCC and sanitizer support installed, rebuild and run all tests
+with AddressSanitizer and UndefinedBehaviorSanitizer:
+
+```sh
+make fclean
+make test CFLAGS='-Wall -Wextra -Werror -std=c99 -fsanitize=address,undefined -g'
+```
+
+Clean first because Make does not automatically rebuild objects when only
+`CFLAGS` changes. To return to a normal build, run:
+
+```sh
+make fclean
+make test
+```
